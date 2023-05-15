@@ -5,16 +5,17 @@ import VectorRight from "../images/vectorNext.svg";
 import VectorRightBlue from "../images/vectorNextBlue.svg";
 
 export const PaginationContainer = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 0px;
-gap: 12px;
-width: 525px; 
-left: 698px;
-top: 1581px;
-background-color: ${({ theme }) => theme.colors.lightgray}; 
-`;
+  position: absolute;
+  bottom: 103px; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  gap: 12px; 
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.lightgray};
+`; 
 
 export const PageButtonsFirst = styled.button` 
   display: flex;
@@ -26,8 +27,9 @@ export const PageButtonsFirst = styled.button`
   color: ${({ theme }) => theme.colors.black};
   line-height: 20px;
   font-size: 14px;
-  padding: 8px 16px 8px 32px;
-  min-width: 60px; 
+  padding: 8px 16px 8px 32px; 
+  max-width: 106px;
+  min-width: 29px; 
   height: 36px;
   border-radius: 5px;
   border: none;
@@ -38,32 +40,34 @@ export const PageButtonsFirst = styled.button`
 
   &:active {
     background-color: ${({ theme }) => theme.colors.lightblue};
-    background-image: url(${VectorLeftBlue}); 
+    background-image: url(${VectorLeftBlue}), url(${VectorLeftBlue}); 
     color: ${({ theme }) => theme.colors.mineshaft};
-  }
+  } 
 
-  &:first-child {
-    width: 76px;
+@media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+  background-image: url(${VectorLeft}), url(${VectorLeft});
+    background-position: 16px center, right 16px center;
+    background-repeat: no-repeat, no-repeat;
+    text-indent: -9999px;
+    white-space: nowrap;
+    padding: 8px 12px;
   }
-
-  &:nth-child(2) {
-  width: 106px;
-}
 `;
 
 export const PageButtonsLast = styled.button` 
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  justify-content: center; 
   font-weight: 400;
   color: ${({ theme }) => theme.colors.black};
   padding: 8px 32px 8px 16px;
   line-height: 20px;
-  font-size: 14px;
-  min-width: 60px; 
-  height: 36px;
+  font-size: 14px; 
+  max-width: 106px;
+  min-width: 29px;
+  max-height: 36px;
+  min-height: 24px;
   border-radius: 5px;
   border: none;
   background-image: url(${VectorRight});
@@ -73,20 +77,23 @@ export const PageButtonsLast = styled.button`
 
   &:active {
     background-color: ${({ theme }) => theme.colors.lightblue};
-    background-image: url(${VectorRightBlue}); 
+    background-image: url(${VectorRightBlue}), url(${VectorRightBlue}); 
     color: ${({ theme }) => theme.colors.mineshaft};
-  }
-
-  &:first-child {
-    width: 76px;
-  }
-
-  &:nth-child(2) {
-    width: 106px;
+  } 
+  &:nth-child(2) { 
     margin-left: -12px;
     margin-right: 0;
   }
-`;
+
+  @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+  background-image: url(${VectorRight}), url(${VectorRight});
+    background-position: 16px center, right 16px center;
+    background-repeat: no-repeat, no-repeat;
+    text-indent: -9999px;
+    white-space: nowrap;
+    padding: 8px 12px;
+  }
+`; // zrobic jeden przycisk uzywajac modyfikatorow
 
 export const Pages = styled.div` 
   display: flex;
