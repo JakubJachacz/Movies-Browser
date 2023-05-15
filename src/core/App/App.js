@@ -6,7 +6,7 @@ import { NoResults } from "../../common/content/NoResults";
 import { BasicTile } from "../../common/content/BasicTile/index"
 import { MainTile } from "../../common/content/MainTile";
 import { TopBar } from "../../common/TopBar";
-import  Pagination  from "../../common/Pagination/index";
+import Pagination from "../../common/Pagination/index";
 import moviesList from "./exmapleMovies.json";
 import personDetails from "./examplePersonDetails.json";
 import movieDetails from "./exampleMovieDetails.json";
@@ -74,5 +74,6 @@ export const App = () => (
       >
       </Section>
     </Container >
+    <Pagination />
   </>
 );
