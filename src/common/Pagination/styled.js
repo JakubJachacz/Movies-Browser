@@ -24,8 +24,7 @@ export const PageButton = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  justify-content: center; 
   font-weight: 400;
   color: ${({ theme }) => theme.colors.black};
   line-height: 20px;
@@ -138,6 +137,10 @@ export const Pages = styled.div`
 
   & > *:last-child {
     margin-right: 0px
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+    margin-bottom: -8px;
   }
 `;
 
