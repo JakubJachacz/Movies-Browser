@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PageButtonsFirst, PageButtonsLast, PageCount, PageText, Pages, PaginationContainer } from "./styled"
+import { PageButton, PageCount, PageText, Pages, PaginationContainer } from "./styled"
 
 const Pagination = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -27,14 +27,16 @@ const Pagination = () => {
 
     return (
         <PaginationContainer>
-            <PageButtonsFirst
+            <PageButton
+                isFirst
                 onClick={handleFirstPageClick}>
                 First
-            </PageButtonsFirst>
-            <PageButtonsFirst
+            </PageButton>
+            <PageButton
+                isPrevious
                 onClick={handlePreviousPageClick}>
                 Previous
-            </PageButtonsFirst>
+            </PageButton>
             <Pages>
                 <PageText>
                     Page{' '}
@@ -48,14 +50,16 @@ const Pagination = () => {
                     </PageCount>
                 </PageText>
             </Pages>
-            <PageButtonsLast
+            <PageButton
+                isNext
                 onClick={handleNextPageClick}>
                 Next
-            </PageButtonsLast>
-            <PageButtonsLast
+            </PageButton>
+            <PageButton
+                isLast
                 onClick={handleLastPageClick}>
                 Last
-            </PageButtonsLast>
+            </PageButton>
         </PaginationContainer>
     );
 };
