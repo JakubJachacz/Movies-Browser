@@ -24,7 +24,6 @@ export const PageButton = styled.button`
   flex-direction: row;
   align-items: center;
   justify-content: center; 
-  font-weight: 400;
   color: ${({ theme }) => theme.colors.black};
   line-height: 20px;
   font-size: 14px;
@@ -114,7 +113,6 @@ export const PageButton = styled.button`
 
 export const Pages = styled.div` 
   display: flex;
-  align-items: center;  
   gap: 8px;
   
   @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) { 
