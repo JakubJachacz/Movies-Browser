@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import VectorLeft from "../../images/vectorPrevious.svg";
 import VectorLeftBlue from "../../images/vectorPreviousBlue.svg";
 import VectorRight from "../../images/vectorNext.svg";
@@ -15,112 +15,142 @@ background-color: ${({ theme }) => theme.colors.lightgray};
 
 @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
         margin: 42px auto;
+        gap: 8px;
       }
 `;
 
-export const PageButtonsFirst = styled.button` 
+export const PageButton = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  justify-content: center; 
   font-weight: 400;
   color: ${({ theme }) => theme.colors.black};
   line-height: 20px;
   font-size: 14px;
-  padding: 8px 16px 8px 32px;
-  min-width: 60px; 
-  height: 36px;
+  max-width: 106px;
+  min-width: 29px;
   border-radius: 5px;
   border: none;
-  background-image: url(${VectorLeft});
-  background-position: 16px center;
-  background-repeat: no-repeat;
-  background-color: ${({ theme }) => theme.colors.gray}; 
+  background-color: ${({ theme }) => theme.colors.gray};
 
   &:active {
-    background-color: ${({ theme }) => theme.colors.lightblue};
-    background-image: url(${VectorLeftBlue}); 
-    color: ${({ theme }) => theme.colors.mineshaft};
+    background-color: ${({ theme }) => theme.colors.lightBlue}; 
   }
 
-  &:first-child {
-    width: 76px;
+  @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+    height: 23px; 
+    background-size: 5px 8px;
   }
 
-  &:nth-child(2) {
-  width: 106px;
-}
-`;
+  ${({ isFirst }) =>
+    isFirst &&
+    css`
+      padding: 8px 16px 8px 32px;
+      background-image: url(${VectorLeft});
+      background-position: 16px center;
+      background-repeat: no-repeat;
 
-export const PageButtonsLast = styled.button` 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  color: ${({ theme }) => theme.colors.black};
-  padding: 8px 32px 8px 16px;
-  line-height: 20px;
-  font-size: 14px;
-  min-width: 60px; 
-  height: 36px;
-  border-radius: 5px;
-  border: none;
-  background-image: url(${VectorRight});
-  background-position: right 16px center;
-  background-repeat: no-repeat;
-  background-color: ${({ theme }) => theme.colors.gray}; 
+      &:active { 
+        background-image: url(${VectorLeftBlue}), url(${VectorLeftBlue});
+        color: ${({ theme }) => theme.colors.mineshaft};
+      }
 
-  &:active {
-    background-color: ${({ theme }) => theme.colors.lightblue};
-    background-image: url(${VectorRightBlue}); 
-    color: ${({ theme }) => theme.colors.mineshaft};
-  }
+      @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+        background-image: url(${VectorLeft}), url(${VectorLeft});
+        background-position: 12px center, right 12px center;
+        background-repeat: no-repeat, no-repeat;
+        padding: 8px 12px;
+        width: 38px;
+      }
+    `}
 
-  &:first-child {
-    width: 76px;
-  }
+  ${({ isPrevious, isNext }) => {
+    if (isPrevious || isNext) {
+      return css`
+        padding: 8px ${isNext ? "32px" : "16px"} 8px ${isPrevious ? "32px" : "16px"};
+        background-image: url(${isPrevious ? VectorLeft : VectorRight});
+        background-position: ${isNext ? "right 16px center" : "16px center"};
+        background-repeat: no-repeat;
 
-  &:nth-child(2) {
-    width: 106px;
-    margin-left: -12px;
-    margin-right: 0;
-  }
-`;
+        &:active { 
+          background-image: url(${isPrevious ? VectorLeftBlue : VectorRightBlue}),
+            url(${isPrevious ? VectorLeftBlue : VectorRightBlue});
+          color: ${({ theme }) => theme.colors.mineshaft};
+        }
+
+        @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+          background-image: url(${isPrevious ? VectorLeft : VectorRight}),
+            url(${isPrevious ? VectorLeft : VectorRight});
+          background-position: center, center;
+          background-repeat: no-repeat, no-repeat; 
+          padding: 8px 12px;
+        }
+      `;
+    }
+  }}
+
+  ${({ isLast }) =>
+    isLast &&
+    css`
+      padding: 8px 32px 8px 16px;
+      background-image: url(${VectorRight});
+      background-position: right 16px center;
+      background-repeat: no-repeat;
+
+      &:active { 
+        background-image: url(${VectorRightBlue}), url(${VectorRightBlue});
+        color: ${({ theme }) => theme.colors.mineshaft};
+      }
+
+      @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+        background-image: url(${VectorRight}), url(${VectorRight});
+        background-position: 12px center, right 12px center;
+        background-repeat: no-repeat, no-repeat; 
+        padding: 8px 12px;
+        width: 38px;
+      }
+      `}`;
 
 export const Pages = styled.div` 
   display: flex;
-  align-items: baseline; 
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
-  & > * {
-    margin-right: -7px;
-  }
-
-  & > *:last-child {
-    margin-right: 0px
+  align-items: center;  
+  gap: 8px;
+  
+  @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) { 
+    gap: 2px; 
   }
 `;
 
 export const PageText = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   height: 24px;
   font-size: 16px;
-  line-height: 150%;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400; 
-  color: ${({ theme }) => theme.colors.darkergray};
-  margin-left: 12px;
+  line-height: 150%; 
+  color: ${({ theme }) => theme.colors.darkerGray}; 
+
+  @media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+    font-size: 10px;
+    gap: 2px;
+  }
 `;
 
-export const PageCount = styled.span`
-font-family: 'Poppins', sans-serif;
-font-style: normal;
+export const PageCount = styled.span` 
 font-weight: 600;
 font-size: 16px;
 line-height: 150%;
 color: ${({ theme }) => theme.colors.black};
+
+@media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+  font-size: 10px; 
+}
+`;
+
+export const StyledSpan = styled.span`
+
+@media (max-width: ${({ theme }) => theme.breakPoints.phoneMax}) {
+  display: none;
+}
 `;
