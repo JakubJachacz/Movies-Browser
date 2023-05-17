@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { PageButtonsFirst, PageButtonsLast, PageCount, PageText, Pages, PaginationContainer } from "./styled"
+import { PageButton, PageButtonsFirst, PageButtonsLast, PageCount, PageText, Pages, PaginationContainer, StyledSpan } from "./styled"
 
 export const Pagination = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -27,14 +27,16 @@ export const Pagination = () => {
 
     return (
         <PaginationContainer>
-            <PageButtonsFirst
+            <PageButton
+                isFirst
                 onClick={handleFirstPageClick}>
-                First
-            </PageButtonsFirst>
-            <PageButtonsFirst
+                <StyledSpan>First</StyledSpan>
+            </PageButton>
+            <PageButton
+                isPrevious
                 onClick={handlePreviousPageClick}>
-                Previous
-            </PageButtonsFirst>
+                <StyledSpan>Previous</StyledSpan>
+            </PageButton>
             <Pages>
                 <PageText>
                     Page{' '}
@@ -42,20 +44,22 @@ export const Pagination = () => {
                         {currentPage}
                     </PageCount>
                 </PageText>
-                <PageText> of{' '}
+                <PageText>of{' '}
                     <PageCount id="totalPages">
                         {totalPages}
                     </PageCount>
                 </PageText>
             </Pages>
-            <PageButtonsLast
+            <PageButton
+            isNext
                 onClick={handleNextPageClick}>
-                Next
-            </PageButtonsLast>
-            <PageButtonsLast
+                <StyledSpan>Next</StyledSpan>
+            </PageButton>
+            <PageButton
+            isLast
                 onClick={handleLastPageClick}>
-                Last
-            </PageButtonsLast>
+                <StyledSpan>Last</StyledSpan>
+            </PageButton>
         </PaginationContainer>
     );
 };
